@@ -111,7 +111,7 @@ if(CATKIN_ENABLE_TESTING)
   roslint_cpp()
   roslint_add_test()
 
-  # unit test for the can_msgs::Frame and can::Frame types.
+  # unit test for the can_msgs::FrameFD and can::Frame types.
   catkin_add_gtest(test_conversion
     test/test_conversion.cpp
   )

@@ -27,7 +27,7 @@
 
 #include <socketcan_bridge/socketcan_to_topic.h>
 #include <socketcan_interface/string.h>
-#include <can_msgs/Frame.h>
+#include <can_msgs/FrameFD.h>
 #include <string>
 
 namespace can
@@ -52,7 +52,7 @@ namespace socketcan_bridge
   SocketCANToTopic::SocketCANToTopic(ros::NodeHandle* nh, ros::NodeHandle* nh_param,
       can::DriverInterfaceSharedPtr driver)
     {
-      can_topic_ = nh->advertise<can_msgs::Frame>("received_messages",
+      can_topic_ = nh->advertise<can_msgs::FrameFD>("received_messages",
                                                   nh_param->param("received_messages_queue_size", 10));
       driver_ = driver;
     };
@@ -106,7 +106,7 @@ namespace socketcan_bridge
         }
       }
 
-      can_msgs::Frame msg;
+      can_msgs::FrameFD msg;
       // converts the can::Frame (socketcan.h) to can_msgs::Frame (ROS msg)
       convertSocketCANToMessage(f, msg);
 

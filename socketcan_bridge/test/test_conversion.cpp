@@ -27,7 +27,7 @@
 #include <socketcan_bridge/topic_to_socketcan.h>
 #include <socketcan_bridge/socketcan_to_topic.h>
 
-#include <can_msgs/Frame.h>
+#include <can_msgs/FrameFD.h>
 #include <socketcan_interface/socketcan.h>
 
 // Bring in gtest
@@ -38,7 +38,7 @@
 TEST(ConversionTest, socketCANToTopicStandard)
 {
   can::Frame f;
-  can_msgs::Frame m;
+  can_msgs::FrameFD m;
   f.id = 127;
   f.dlc = 8;
   f.is_error = false;
@@ -65,7 +65,7 @@ TEST(ConversionTest, socketCANToTopicStandard)
 TEST(ConversionTest, socketCANToTopicFlags)
 {
   can::Frame f;
-  can_msgs::Frame m;
+  can_msgs::FrameFD m;
 
   f.is_error = true;
   socketcan_bridge::convertSocketCANToMessage(f, m);
@@ -87,7 +87,7 @@ TEST(ConversionTest, socketCANToTopicFlags)
 TEST(ConversionTest, topicToSocketCANStandard)
 {
   can::Frame f;
-  can_msgs::Frame m;
+  can_msgs::FrameFD m;
   m.id = 127;
   m.dlc = 8;
   m.is_error = false;
@@ -114,7 +114,7 @@ TEST(ConversionTest, topicToSocketCANStandard)
 TEST(ConversionTest, topicToSocketCANFlags)
 {
   can::Frame f;
-  can_msgs::Frame m;
+  can_msgs::FrameFD m;
 
   m.is_error = true;
   socketcan_bridge::convertMessageToSocketCAN(m, f);
